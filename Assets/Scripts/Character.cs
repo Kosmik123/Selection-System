@@ -24,5 +24,16 @@ namespace SelectionSystem
             this.rotationSpeed = rotationSpeed;
             this.endurance = endurance;
         }
+
+        public void FollowCharacter(Character characterToFollow)
+        {
+            followedCharacter = characterToFollow;
+        }
+
+        public void SetTarget(Vector3 targetPosition)
+        {
+            followedCharacter = null;
+            this.targetPosition = targetPosition;
+        }
     }
 }

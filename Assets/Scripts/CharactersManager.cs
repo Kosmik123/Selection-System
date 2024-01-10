@@ -58,6 +58,18 @@ namespace SelectionSystem
             {
                 Debug.Log(position);
                 Debug.DrawLine(position, position + Vector3.up, Color.red, 5);
+
+                foreach (var character in characters)
+                {
+                    if (character == selectedCharacter)
+                    {
+                        character.SetTarget(position);
+                    }
+                    else
+                    {
+                        character.FollowCharacter(selectedCharacter);
+                    }
+                }
             }
         }
 
