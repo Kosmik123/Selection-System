@@ -38,6 +38,13 @@ namespace SelectionSystem
         {
             followedCharacter = null;
             this.targetPosition = targetPosition;
+            pathfindingBehavior.SetTarget(targetPosition);
+        }
+
+        private void Update()
+        {
+            if (followedCharacter && followedCharacter.pathfindingBehavior.IsOnTarget == false)
+                pathfindingBehavior.SetTarget(followedCharacter.transform.position);
         }
     }
 }
