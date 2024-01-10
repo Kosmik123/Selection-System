@@ -17,5 +17,12 @@ namespace SelectionSystem
         private Vector3 targetPosition;
         [SerializeField]
         private Character followedCharacter;
+
+        public void Init(float moveSpeed, float rotationSpeed, float endurance)
+        {
+            this.moveSpeed = moveSpeed;
+            this.rotationSpeed = rotationSpeed;
+            this.endurance = endurance;
+        }
     }
 }
