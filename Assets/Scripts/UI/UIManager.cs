@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace SelectionSystem.UI
 {
@@ -7,20 +8,30 @@ namespace SelectionSystem.UI
         [Header("Settings")]
         [SerializeField]
         private CharactersManager charactersManager;
+        [SerializeField]
+        private CharacterButton characterButtonPrototype;
+        [SerializeField]
+        private Transform buttonsContainer;
+
+        [Header("States")]
+        [SerializeField]
+        private List<CharacterButton> characterButtons;
 
         private void OnEnable()
         {
-            charactersManager.OnCharacterAdded += CharactersManager_OnCharacterAdded;   
+            charactersManager.OnCharacterAdded += CreateButton;   
         }
 
-        private void CharactersManager_OnCharacterAdded(Character newCharacter)
+        private void CreateButton(Character newCharacter)
         {
-
+            var button = Instantiate(characterButtonPrototype, buttonsContainer);
+            button.Character = newCharacter;
+            characterButtons.Add(button);
         }
 
         private void OnDisable()
         {
-            charactersManager.OnCharacterAdded -= CharactersManager_OnCharacterAdded;   
+            charactersManager.OnCharacterAdded -= CreateButton;   
         }
     }
 }

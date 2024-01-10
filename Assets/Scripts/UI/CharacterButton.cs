@@ -21,6 +21,11 @@ namespace SelectionSystem.UI
 
         [SerializeField]
         private Character character;
+        public Character Character
+        {
+            get => character;
+            set => character = value;
+        }
 
         private void OnEnable()
         {
