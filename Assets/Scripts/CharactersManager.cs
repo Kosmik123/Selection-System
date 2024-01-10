@@ -16,6 +16,8 @@ namespace SelectionSystem
         [Header("States")]
         [SerializeField]
         private List<Character> characters;
+        [SerializeField]
+        private Character selectedCharacter;
 
         private void Start()
         {
@@ -32,6 +34,11 @@ namespace SelectionSystem
             character.transform.position = new Vector3(flatPosition.x, 0, flatPosition.y);
             characters.Add(character);
             OnCharacterAdded?.Invoke(character);
+        }
+
+        public void SelectCharacter(Character character)
+        {
+            selectedCharacter = character;
         }
     }
 }

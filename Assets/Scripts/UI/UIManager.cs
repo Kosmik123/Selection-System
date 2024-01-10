@@ -27,6 +27,12 @@ namespace SelectionSystem.UI
             var button = Instantiate(characterButtonPrototype, buttonsContainer);
             button.Character = newCharacter;
             characterButtons.Add(button);
+            button.OnCharacterChosen += Button_OnCharacterChosen;
+        }
+
+        private void Button_OnCharacterChosen(Character character)
+        {
+            charactersManager.SelectCharacter(character);
         }
 
         private void OnDisable()
