@@ -4,6 +4,10 @@ namespace SelectionSystem
 {
     public class Character : MonoBehaviour
     {
+        [Header("To Link")]
+        [SerializeField]
+        private PathfindingBehavior pathfindingBehavior;
+
         [Header("Properties")]
         [SerializeField]
         private float moveSpeed;
