@@ -5,6 +5,8 @@ namespace SelectionSystem
 {
     public class CharactersManager : MonoBehaviour
     {
+        public event System.Action<Character> OnCharacterAdded;
+
         [Header("Settings")]
         [SerializeField]
         private int initialCharactersCount = 3;
@@ -29,6 +31,7 @@ namespace SelectionSystem
             Vector2 flatPosition = 5 * Random.insideUnitCircle;
             character.transform.position = new Vector3(flatPosition.x, 0, flatPosition.y);
             characters.Add(character);
+            OnCharacterAdded?.Invoke(character);
         }
     }
 }
