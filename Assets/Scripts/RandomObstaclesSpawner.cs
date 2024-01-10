@@ -1,9 +1,12 @@
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class RandomObstaclesSpawner : MonoBehaviour
 {
     [SerializeField]
     private int obstaclesCount = 10;
+    [SerializeField]
+    private NavMeshSurface navMeshSurface;
 
     private void Start()
     {
@@ -19,6 +22,7 @@ public class RandomObstaclesSpawner : MonoBehaviour
             obstacle.transform.SetPositionAndRotation(new Vector3(x, 0.5f, z), Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up));
             obstacle.transform.localScale = new Vector3(xScale, 1, zScale);
         }
+        navMeshSurface.BuildNavMesh();
     }
 
     private static float GetRandomValueOnTestPlane()
