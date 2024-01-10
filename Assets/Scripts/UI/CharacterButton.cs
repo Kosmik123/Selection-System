@@ -27,6 +27,20 @@ namespace SelectionSystem.UI
             set => character = value;
         }
 
+        [SerializeField]
+        private bool isSelected;
+        public bool IsSelected
+        {
+            get => isSelected;
+            set
+            {
+                isSelected = value;
+                //Button.interactable = !isSelected;
+                if (isSelected)
+                    Button.Select();
+            }
+        }
+
         private void OnEnable()
         {
             Button.onClick.AddListener(Button_OnClick);       

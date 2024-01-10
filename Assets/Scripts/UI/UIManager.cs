@@ -20,6 +20,7 @@ namespace SelectionSystem.UI
         private void OnEnable()
         {
             charactersManager.OnCharacterAdded += CreateButton;   
+            charactersManager.OnCharacterSelected += RefreshButtonsSelection;
         }
 
         private void CreateButton(Character newCharacter)
@@ -35,8 +36,17 @@ namespace SelectionSystem.UI
             charactersManager.SelectCharacter(character);
         }
 
+        private void RefreshButtonsSelection(Character character)
+        {
+            foreach (var button in characterButtons)
+            {
+                button.IsSelected = button.Character == character;
+            }    
+        }
+
         private void OnDisable()
         {
+            charactersManager.OnCharacterSelected -= RefreshButtonsSelection;
             charactersManager.OnCharacterAdded -= CreateButton;   
         }
     }

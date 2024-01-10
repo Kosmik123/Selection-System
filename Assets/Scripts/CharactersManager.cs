@@ -6,6 +6,7 @@ namespace SelectionSystem
     public class CharactersManager : MonoBehaviour
     {
         public event System.Action<Character> OnCharacterAdded;
+        public event System.Action<Character> OnCharacterSelected;
 
         [Header("Settings")]
         [SerializeField]
@@ -39,6 +40,7 @@ namespace SelectionSystem
         public void SelectCharacter(Character character)
         {
             selectedCharacter = character;
+            OnCharacterSelected?.Invoke(character);
         }
     }
 }
