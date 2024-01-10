@@ -15,12 +15,19 @@ namespace SelectionSystem
         private CharactersSpawner spawner;
         [SerializeField]
         private PositionProvider positionProvider;
+        [SerializeField]
+        private ClickProvider clickProvider;
 
         [Header("States")]
         [SerializeField]
         private List<Character> characters;
         [SerializeField]
         private Character selectedCharacter;
+
+        private void OnEnable()
+        {
+            clickProvider.OnClicked += ClickProvider_OnClicked;
+        }
 
         private void Start()
         {
@@ -43,6 +50,20 @@ namespace SelectionSystem
         {
             selectedCharacter = character;
             OnCharacterSelected?.Invoke(character);
+        }
+
+        private void ClickProvider_OnClicked()
+        {
+            if (positionProvider.TryGetPosition(out var position))
+            {
+                Debug.Log(position);
+                Debug.DrawLine(position, position + Vector3.up, Color.red, 5);
+            }
+        }
+
+        private void OnDisable()
+        {
+            clickProvider.OnClicked -= ClickProvider_OnClicked;
         }
     }
 }

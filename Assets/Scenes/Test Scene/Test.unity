@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 59194823}
   - component: {fileID: 59194825}
   - component: {fileID: 59194826}
+  - component: {fileID: 59194827}
   m_Layer: 0
   m_Name: Characters Manager
   m_TagString: GameController
@@ -188,6 +189,7 @@ MonoBehaviour:
   initialCharactersCount: 3
   spawner: {fileID: 59194823}
   positionProvider: {fileID: 59194826}
+  clickProvider: {fileID: 59194827}
   characters: []
   selectedCharacter: {fileID: 0}
 --- !u!114 &59194826
@@ -205,6 +207,19 @@ MonoBehaviour:
   detectedLayers:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &59194827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59194822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b37e7a9b990a66743a210bcd4766529e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseButton: 0
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
