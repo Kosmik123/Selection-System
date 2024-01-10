@@ -13,6 +13,8 @@ namespace SelectionSystem
         private int initialCharactersCount = 3;
         [SerializeField]
         private CharactersSpawner spawner;
+        [SerializeField]
+        private PositionProvider positionProvider;
 
         [Header("States")]
         [SerializeField]

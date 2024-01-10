@@ -187,6 +187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialCharactersCount: 3
   spawner: {fileID: 59194823}
+  positionProvider: {fileID: 59194826}
   characters: []
   selectedCharacter: {fileID: 0}
 --- !u!114 &59194826
