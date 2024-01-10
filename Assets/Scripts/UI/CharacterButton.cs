@@ -44,9 +44,11 @@ namespace SelectionSystem.UI
             set
             {
                 isSelected = value;
-                //Button.interactable = !isSelected;
+                Button.interactable = !isSelected;
                 if (isSelected)
-                    Button.Select();
+                    label.fontStyle |= TMPro.FontStyles.Bold;
+                else
+                    label.fontStyle &= ~TMPro.FontStyles.Bold;
             }
         }
 
