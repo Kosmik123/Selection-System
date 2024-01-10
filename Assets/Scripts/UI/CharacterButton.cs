@@ -19,12 +19,21 @@ namespace SelectionSystem.UI
             }
         }
 
+        [Header("To Link")]
+        [SerializeField]
+        private TMPro.TMP_Text label;
+
+        [Header("Properties")]
         [SerializeField]
         private Character character;
         public Character Character
         {
             get => character;
-            set => character = value;
+            set
+            {
+                character = value;
+                label.text = character.name;
+            }
         }
 
         [SerializeField]

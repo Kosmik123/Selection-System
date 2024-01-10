@@ -17,7 +17,8 @@ namespace SelectionSystem
             float moveSpeed = settings.GetMoveSpeed();
             float rotationSpeed = settings.GetRotationSpeed();
             float endurance = settings.GetEndurance();
-            character.Init(moveSpeed, rotationSpeed, endurance);    
+            character.Init(moveSpeed, rotationSpeed, endurance);
+            character.name = $"{charactersContainer.childCount}";
             return character;
         }
 
