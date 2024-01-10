@@ -2,12 +2,12 @@
 
 namespace SelectionSystem
 {
-    public class RaycastPositionProvider : MonoBehaviour, IPositionProvider
+    public class RaycastPositionProvider : PositionProvider
     {
         [SerializeField]
         private LayerMask detectedLayers;
 
-        public bool TryGetPosition(out Vector3 position)
+        public override bool TryGetPosition(out Vector3 position)
         {
             position = default;
             var camera = Camera.main;
