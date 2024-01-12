@@ -8,7 +8,7 @@ namespace SelectionSystem
         [SerializeField]
         private NavMeshAgent agent;
 
-        public override bool IsOnTarget => agent.pathStatus == NavMeshPathStatus.PathComplete && agent.remainingDistance < 0.1f;
+        public override bool IsOnTarget => agent.hasPath && agent.remainingDistance < agent.stoppingDistance;
 
         public override float MoveSpeed 
         { 
