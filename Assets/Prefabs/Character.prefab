@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321e198e273cbb64d99ec312cfe9bdb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathfindingBehavior: {fileID: 1332782342216293620}
+  movement: {fileID: 1332782342216293620}
   moveSpeed: 0
   rotationSpeed: 0
   endurance: 0

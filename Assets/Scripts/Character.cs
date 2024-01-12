@@ -6,7 +6,7 @@ namespace SelectionSystem
     {
         [Header("To Link")]
         [SerializeField]
-        private CharacterMovement pathfindingBehavior;
+        private CharacterMovement movement;
 
         [Header("Properties")]
         [SerializeField]
@@ -24,8 +24,8 @@ namespace SelectionSystem
 
         public void Init(float moveSpeed, float rotationSpeed, float endurance)
         {
-            this.moveSpeed = moveSpeed;
-            this.rotationSpeed = rotationSpeed;
+            movement.MoveSpeed = this.moveSpeed = moveSpeed;
+            movement.RotationSpeed = this.rotationSpeed = rotationSpeed;
             this.endurance = endurance;
         }
 
@@ -38,13 +38,13 @@ namespace SelectionSystem
         {
             followedCharacter = null;
             this.targetPosition = targetPosition;
-            pathfindingBehavior.SetTarget(targetPosition);
+            movement.SetTarget(targetPosition);
         }
 
         private void Update()
         {
-            if (followedCharacter && followedCharacter.pathfindingBehavior.IsOnTarget == false)
-                pathfindingBehavior.SetTarget(followedCharacter.transform.position);
+            if (followedCharacter && followedCharacter.movement.IsOnTarget == false)
+                movement.SetTarget(followedCharacter.transform.position);
         }
     }
 }
