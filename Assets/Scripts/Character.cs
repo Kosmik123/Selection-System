@@ -16,6 +16,8 @@ namespace SelectionSystem
         [SerializeField]
         private float endurance;
 
+        public float enduranceTimer;
+
         [Header("States")]
         [SerializeField]
         private Vector3 targetPosition;
@@ -32,23 +34,43 @@ namespace SelectionSystem
         public void FollowCharacter(Character characterToFollow)
         {
             followedCharacter = characterToFollow;
+            movement.enabled = true;
+            enduranceTimer = 0;
         }
 
         public void SetTarget(Vector3 target)
         {
             followedCharacter = null;
             targetPosition = target;
+            movement.enabled = true;
+            enduranceTimer = 0;
             movement.SetTarget(targetPosition);
         }
 
         private void Update()
         {
             if (followedCharacter)
+                UpdateFollowing();
+
+            if (movement.IsOnTarget == false)
+                UpdateEndurance();
+        }
+
+        private void UpdateFollowing()
+        {
+            if (followedCharacter.movement.IsOnTarget == false)
             {
-                if (followedCharacter.movement.IsOnTarget == false)
-                {
-                    movement.SetTarget(followedCharacter.transform.position);
-                }
+                movement.SetTarget(followedCharacter.transform.position);
+            }
+        }
+
+        private void UpdateEndurance()
+        {
+            enduranceTimer += Time.deltaTime;
+            if (enduranceTimer > endurance)
+            {
+                enduranceTimer = 0;
+                movement.enabled = !movement.enabled;
             }
         }
     }
