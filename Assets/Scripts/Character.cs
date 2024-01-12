@@ -6,7 +6,7 @@ namespace SelectionSystem
     {
         [Header("To Link")]
         [SerializeField]
-        private PathfindingBehavior pathfindingBehavior;
+        private CharacterMovement pathfindingBehavior;
 
         [Header("Properties")]
         [SerializeField]

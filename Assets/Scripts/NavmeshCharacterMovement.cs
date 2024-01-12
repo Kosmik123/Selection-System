@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 namespace SelectionSystem
 {
-    public class NavmeshPathfindingBehavior : PathfindingBehavior
+    public class NavmeshCharacterMovement : CharacterMovement
     {
         [SerializeField]
         private NavMeshAgent agent;
