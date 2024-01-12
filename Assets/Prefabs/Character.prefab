@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movement: {fileID: 1332782342216293620}
+  stoppingDistance: 1.2
   moveSpeed: 0
   rotationSpeed: 0
   endurance: 0
