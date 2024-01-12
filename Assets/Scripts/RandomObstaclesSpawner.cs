@@ -8,7 +8,7 @@ public class RandomObstaclesSpawner : MonoBehaviour
     [SerializeField]
     private NavMeshSurface navMeshSurface;
 
-    private void Start()
+    private void Awake()
     {
         for (int i = 0; i < obstaclesCount; i++)
         {
