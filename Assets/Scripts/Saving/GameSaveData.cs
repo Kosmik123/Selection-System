@@ -5,7 +5,7 @@ namespace SelectionSystem.Saving
     [System.Serializable]
     public class GameSaveData
     {
-        private List<SaveData> saveDatas =new List<SaveData>();
+        private List<SaveData> saveDatas = new List<SaveData>();
         public List<SaveData> SaveDatas
         {
             get => saveDatas;

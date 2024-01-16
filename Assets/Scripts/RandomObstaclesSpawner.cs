@@ -1,9 +1,11 @@
+using SelectionSystem.Saving;
+using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
 
 namespace SelectionSystem
 {
-    public class RandomObstaclesSpawner : MonoBehaviour
+    public class RandomObstaclesSpawner : SavableBehavior
     {
         [SerializeField]
         private int obstaclesCount = 10;
@@ -35,6 +37,43 @@ namespace SelectionSystem
         private static int RandomSign()
         {
             return 2 * Random.Range(0, 2) - 1;
+        }
+
+        public override SaveData GetSaveData()
+        {
+            var saveData = new ObstaclesSaveData();
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var obstacle = transform.GetChild(i);
+                var data = ObstacleData.FromTransform(obstacle);
+                saveData.obstacles.Add(data);
+            }
+            return saveData;
+        }
+
+        [System.Serializable]
+        public class ObstaclesSaveData : SaveData
+        {
+            public List<ObstacleData> obstacles;
+        }
+
+        [System.Serializable]
+        public struct ObstacleData
+        {
+            public Vector2 position;
+            public Vector2 scale;
+            public float angle;
+
+            public static ObstacleData FromTransform(Transform transform)
+            {
+                var obstacleData = new ObstacleData()
+                {
+                    position = new Vector2(transform.position.x, transform.position.z),
+                    scale = new Vector2(transform.localScale.x, transform.localScale.z),
+                    angle = transform.rotation.eulerAngles.y
+                };
+                return obstacleData;
+            }
         }
     }
 }
