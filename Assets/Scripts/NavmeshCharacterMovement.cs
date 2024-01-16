@@ -22,9 +22,20 @@ namespace SelectionSystem
             set => agent.angularSpeed = value;
         }
 
+        private void Awake()
+        {
+            agent.enabled = false;
+        }
+
         private void OnEnable()
         {
-            agent.isStopped = false;
+            if (agent.enabled)
+                agent.isStopped = false;
+        }
+
+        private void Start()
+        {
+            agent.enabled = true;
         }
 
         public override void SetTarget(Vector3 target)
