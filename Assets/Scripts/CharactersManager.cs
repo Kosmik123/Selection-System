@@ -7,6 +7,7 @@ namespace SelectionSystem
     public class CharactersManager : SavableBehavior
     {
         public event System.Action<Character> OnCharacterAdded;
+        public event System.Action<Character> OnCharacterRemoved;
         public event System.Action<Character> OnCharacterSelected;
 
         [Header("Settings")]
@@ -97,7 +98,10 @@ namespace SelectionSystem
             if (data is CharactersSaveData charactersSaveData)
             {
                 foreach (var character in characters)
+                {
                     Destroy(character.gameObject);
+                    OnCharacterRemoved?.Invoke(character);
+                }
                 characters.Clear();
 
                 foreach (var characterData in charactersSaveData.characterDatas)
@@ -108,6 +112,7 @@ namespace SelectionSystem
                         characterData.rotationSpeed,
                         characterData.endurance);
                     characters.Add(character);
+                    OnCharacterAdded?.Invoke(character);
                 }
                 if (charactersSaveData.selectedCharacterIndex != -1)
                     SelectCharacter(characters[charactersSaveData.selectedCharacterIndex]);

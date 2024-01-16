@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SelectionSystem.UI
@@ -21,6 +22,7 @@ namespace SelectionSystem.UI
         {
             charactersManager.OnCharacterAdded += CreateButton;   
             charactersManager.OnCharacterSelected += RefreshButtonsSelection;
+            charactersManager.OnCharacterRemoved += RemoveButton;
         }
 
         private void CreateButton(Character newCharacter)
@@ -44,10 +46,24 @@ namespace SelectionSystem.UI
             }    
         }
 
+        private void RemoveButton(Character character)
+        {
+            for (int i = 0; i < characterButtons.Count; i++)
+            {
+                if (characterButtons[i].Character == character)
+                {
+                    Destroy(characterButtons[i].gameObject);
+                    characterButtons.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
         private void OnDisable()
         {
             charactersManager.OnCharacterSelected -= RefreshButtonsSelection;
-            charactersManager.OnCharacterAdded -= CreateButton;   
+            charactersManager.OnCharacterAdded -= CreateButton;
+            charactersManager.OnCharacterRemoved -= RemoveButton;
         }
     }
 }
