@@ -50,30 +50,30 @@ namespace SelectionSystem
             }
             return saveData;
         }
+    }
 
-        [System.Serializable]
-        public class ObstaclesSaveData : SaveData
+    [System.Serializable]
+    public class ObstaclesSaveData : SaveData
+    {
+        public List<ObstacleData> obstacles = new List<ObstacleData>();
+    }
+
+    [System.Serializable]
+    public struct ObstacleData
+    {
+        public Vector2 position;
+        public Vector2 scale;
+        public float angle;
+
+        public static ObstacleData FromTransform(Transform transform)
         {
-            public List<ObstacleData> obstacles = new List<ObstacleData>();
-        }
-
-        [System.Serializable]
-        public struct ObstacleData
-        {
-            public Vector2 position;
-            public Vector2 scale;
-            public float angle;
-
-            public static ObstacleData FromTransform(Transform transform)
+            var obstacleData = new ObstacleData()
             {
-                var obstacleData = new ObstacleData()
-                {
-                    position = new Vector2(transform.position.x, transform.position.z),
-                    scale = new Vector2(transform.localScale.x, transform.localScale.z),
-                    angle = transform.rotation.eulerAngles.y
-                };
-                return obstacleData;
-            }
+                position = new Vector2(transform.position.x, transform.position.z),
+                scale = new Vector2(transform.localScale.x, transform.localScale.z),
+                angle = transform.rotation.eulerAngles.y
+            };
+            return obstacleData;
         }
     }
 }

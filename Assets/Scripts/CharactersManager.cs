@@ -93,33 +93,34 @@ namespace SelectionSystem
             }
             return saveData;
         }
+    }
 
-        public class CharactersSaveData : SaveData
+    [System.Serializable]
+    public class CharactersSaveData : SaveData
+    {
+        public List<CharacterData> characterDatas = new List<CharacterData>();
+        public int selectedCharacterIndex = -1;
+    }
+
+    [System.Serializable]
+    public struct CharacterData
+    {
+        public Vector2 position;
+        public float moveSpeed;
+        public float rotationSpeed;
+        public float endurance;
+        public float currentEndurance;
+
+        public static CharacterData FromCharacter(Character character)
         {
-            public List<CharacterData> characterDatas = new List<CharacterData>();
-            public int selectedCharacterIndex;
-        }
-
-        public struct CharacterData
-        {
-            public Vector2 position;
-            public float moveSpeed;
-            public float rotationSpeed;
-            public float endurance;
-            public float currentEndurance;
-
-            public static CharacterData FromCharacter(Character character)
+            return new CharacterData()
             {
-                return new CharacterData()
-                {
-                    position = new Vector2(character.transform.position.x, character.transform.position.z),
-                    moveSpeed = character.MoveSpeed,
-                    rotationSpeed = character.RotationSpeed,
-                    endurance = character.Endurance,
-                    currentEndurance = character.CurrentEndurance
-                };
-            }
+                position = new Vector2(character.transform.position.x, character.transform.position.z),
+                moveSpeed = character.MoveSpeed,
+                rotationSpeed = character.RotationSpeed,
+                endurance = character.Endurance,
+                currentEndurance = character.CurrentEndurance
+            };
         }
-
     }
 }

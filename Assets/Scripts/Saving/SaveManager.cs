@@ -17,10 +17,13 @@ namespace SelectionSystem.Saving
             foreach (var savable in allSavables)
             {
                 var data = savable.GetSaveData();
-                gameSaveData.saveDatas.Add(data);
+                if (data is CharactersSaveData charactersSaveData)
+                    gameSaveData.charactersSaveData = charactersSaveData;
+                else if (data is ObstaclesSaveData obstaclesSaveData)
+                    gameSaveData.obstaclesSaveData = obstaclesSaveData;
             }
 
-            var json = JsonUtility.ToJson(gameSaveData, true);
+            var json = JsonUtility.ToJson(gameSaveData);
             SaveToFile(json);
         }
 
