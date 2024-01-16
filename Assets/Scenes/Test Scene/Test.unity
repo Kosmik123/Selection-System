@@ -189,7 +189,7 @@ MonoBehaviour:
   initialCharactersCount: 3
   spawner: {fileID: 59194823}
   positionProvider: {fileID: 59194826}
-  clickProvider: {fileID: 59194827}
+  clickProvider: {fileID: 558165202}
   characters: []
   selectedCharacter: {fileID: 0}
 --- !u!114 &59194826
@@ -489,6 +489,7 @@ GameObject:
   - component: {fileID: 558165198}
   - component: {fileID: 558165197}
   - component: {fileID: 558165201}
+  - component: {fileID: 558165202}
   m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
@@ -613,6 +614,18 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: b2219d7b8b7a44f43bcd65459b15f04e, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &558165202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 558165196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9eb407e9f08024196b9c1e1a66aa25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &616075021
 GameObject:
   m_ObjectHideFlags: 0
