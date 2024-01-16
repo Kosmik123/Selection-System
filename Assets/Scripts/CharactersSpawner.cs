@@ -19,6 +19,8 @@ namespace SelectionSystem
             float endurance = settings.GetEndurance();
             character.Init(moveSpeed, rotationSpeed, endurance);
             character.name = $"{charactersContainer.childCount}";
+            Vector2 flatPosition = 5 * Random.insideUnitCircle;
+            character.transform.position = new Vector3(flatPosition.x, 0, flatPosition.y);
             return character;
         }
 

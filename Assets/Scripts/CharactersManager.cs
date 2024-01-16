@@ -41,8 +41,6 @@ namespace SelectionSystem
         private void CreateNewCharacter()
         {
             var character = spawner.SpawnCharacter();
-            Vector2 flatPosition = 5 * Random.insideUnitCircle;
-            character.transform.position = new Vector3(flatPosition.x, 0, flatPosition.y);
             characters.Add(character);
             OnCharacterAdded?.Invoke(character);
         }
