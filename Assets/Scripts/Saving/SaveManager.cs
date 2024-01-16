@@ -6,6 +6,9 @@ namespace SelectionSystem.Saving
 {
     public class SaveManager : MonoBehaviour
     {
+        private static string SavesPath => $"{Application.persistentDataPath}/Save0.sav";
+
+        [ContextMenu("Save")]
         public void SaveGame()
         {
             var allSavables = FindObjectsOfType<SavableBehavior>();
@@ -17,7 +20,15 @@ namespace SelectionSystem.Saving
             }
 
             var json = JsonUtility.ToJson(gameSaveData, true);
+            SaveToFile(json);
         }
 
+        private void SaveToFile(string jsonData)
+        {
+            using (var writer = new StreamWriter(SavesPath))
+            {
+                writer.Write(jsonData);
+            }
+        }
     }
 }
