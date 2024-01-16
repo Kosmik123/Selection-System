@@ -20,13 +20,19 @@ namespace SelectionSystem
                 float z = GetRandomValueOnTestPlane();
                 float xScale = Random.Range(1f, 5f);
                 float zScale = Random.Range(1f, 5f);
+                float angle = Random.Range(0, 360);
 
-                var obstacle = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                obstacle.transform.parent = transform;
-                obstacle.transform.SetPositionAndRotation(new Vector3(x, 0.5f, z), Quaternion.AngleAxis(Random.Range(0, 360), Vector3.up));
-                obstacle.transform.localScale = new Vector3(xScale, 1, zScale);
+                CreateObstacle(x, z, xScale, zScale, angle);
             }
             navMeshSurface.BuildNavMesh();
+        }
+
+        private void CreateObstacle(float x, float z, float xScale, float zScale, float angle)
+        {
+            var obstacle = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            obstacle.transform.parent = transform;
+            obstacle.transform.SetPositionAndRotation(new Vector3(x, 0.5f, z), Quaternion.AngleAxis(angle, Vector3.up));
+            obstacle.transform.localScale = new Vector3(xScale, 1, zScale);
         }
 
         private static float GetRandomValueOnTestPlane()
@@ -49,6 +55,25 @@ namespace SelectionSystem
                 saveData.obstacles.Add(data);
             }
             return saveData;
+        }
+
+        public override void SetSaveData(SaveData data)
+        {
+            if (data is ObstaclesSaveData obstaclesSaveData)
+            {
+                ClearObstacles();
+                foreach (var obstacleData in obstaclesSaveData.obstacles)
+                {
+                    CreateObstacle(obstacleData.position.x, obstacleData.position.y,
+                        obstacleData.scale.x, obstacleData.scale.y, obstacleData.angle);
+                }
+            }
+        }
+
+        private void ClearObstacles()
+        {
+            while (transform.childCount > 0)
+                Destroy(transform.GetChild(0).gameObject);
         }
     }
 

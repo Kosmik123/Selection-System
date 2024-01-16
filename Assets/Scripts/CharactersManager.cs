@@ -91,6 +91,26 @@ namespace SelectionSystem
             }
             return saveData;
         }
+
+        public override void SetSaveData(SaveData data)
+        {
+            if (data is CharactersSaveData charactersSaveData)
+            {
+                foreach (var character in characters)
+                    Destroy(character.gameObject);
+                characters.Clear();
+
+                foreach (var characterData in charactersSaveData.characterDatas)
+                {
+                    var character = spawner.SpawnCharacter(
+                        characterData.position,
+                        characterData.moveSpeed,
+                        characterData.rotationSpeed,
+                        characterData.endurance);
+                    characters.Add(character);
+                }
+            }
+        }
     }
 
     [System.Serializable]
