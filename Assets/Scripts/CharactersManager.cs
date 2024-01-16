@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using SelectionSystem.Saving;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace SelectionSystem
 {
-    public class CharactersManager : MonoBehaviour
+    public class CharactersManager : SavableBehavior
     {
         public event System.Action<Character> OnCharacterAdded;
         public event System.Action<Character> OnCharacterSelected;
@@ -77,5 +78,48 @@ namespace SelectionSystem
         {
             clickProvider.OnClicked -= ClickProvider_OnClicked;
         }
+
+        public override SaveData GetSaveData()
+        {
+            var saveData = new CharactersSaveData();
+            for (int i = 0 ; i < characters.Count; i++) 
+            {
+                var character = characters[i];
+                if (character == selectedCharacter)
+                    saveData.selectedCharacterIndex = i;
+
+                var characterData = CharacterData.FromCharacter(character);
+                saveData.characterDatas.Add(characterData);
+            }
+            return saveData;
+        }
+
+        public class CharactersSaveData : SaveData
+        {
+            public List<CharacterData> characterDatas = new List<CharacterData>();
+            public int selectedCharacterIndex;
+        }
+
+        public struct CharacterData
+        {
+            public Vector2 position;
+            public float moveSpeed;
+            public float rotationSpeed;
+            public float endurance;
+            public float currentEndurance;
+
+            public static CharacterData FromCharacter(Character character)
+            {
+                return new CharacterData()
+                {
+                    position = new Vector2(character.transform.position.x, character.transform.position.z),
+                    moveSpeed = character.MoveSpeed,
+                    rotationSpeed = character.RotationSpeed,
+                    endurance = character.Endurance,
+                    currentEndurance = character.CurrentEndurance
+                };
+            }
+        }
+
     }
 }

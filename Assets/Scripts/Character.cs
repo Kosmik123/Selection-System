@@ -11,12 +11,19 @@ namespace SelectionSystem
         [Header("Properties")]
         [SerializeField]
         private float moveSpeed;
+        public float MoveSpeed => moveSpeed;
+        
         [SerializeField]
         private float rotationSpeed;
+        public float RotationSpeed => rotationSpeed;
+
         [SerializeField]
         private float endurance;
+        public float Endurance => endurance;
 
-        public float enduranceTimer;
+        [SerializeField]
+        private float enduranceTimer;
+        public float CurrentEndurance => enduranceTimer;
 
         [Header("States")]
         [SerializeField]
