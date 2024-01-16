@@ -66,11 +66,23 @@ namespace SelectionSystem
 
         private void UpdateEndurance()
         {
-            enduranceTimer += Time.deltaTime;
-            if (enduranceTimer > endurance)
+            if (movement.enabled && enduranceTimer < endurance)
             {
-                enduranceTimer = 0;
-                movement.enabled = !movement.enabled;
+                enduranceTimer += Time.deltaTime;
+                if (enduranceTimer > endurance)
+                {
+                    enduranceTimer = endurance;
+                    movement.enabled = !movement.enabled;
+                }
+            }
+            else if (enduranceTimer > 0)
+            {
+                enduranceTimer -= Time.deltaTime;
+                if (enduranceTimer < 0)
+                {
+                    enduranceTimer = 0;
+                    movement.enabled = !movement.enabled;
+                }
             }
         }
     }
