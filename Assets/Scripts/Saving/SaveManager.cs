@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using UnityEngine;
 
 namespace SelectionSystem.Saving
 {
     public class SaveManager : MonoBehaviour
     {
+        public event System.Action OnGameSaved;
+
         private static string SavesPath => $"{Application.persistentDataPath}/Save0.sav";
 
         [ContextMenu("Save")]
@@ -23,12 +24,13 @@ namespace SelectionSystem.Saving
             SaveToFile(json);
         }
 
-        private void SaveToFile(string jsonData)
+        private async void SaveToFile(string jsonData)
         {
             using (var writer = new StreamWriter(SavesPath))
             {
-                writer.Write(jsonData);
+                await writer.WriteAsync(jsonData);
             }
+            OnGameSaved?.Invoke();
         }
     }
 }
