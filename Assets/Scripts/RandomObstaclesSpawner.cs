@@ -1,4 +1,5 @@
 using SelectionSystem.Saving;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
 using UnityEngine;
@@ -67,8 +68,14 @@ namespace SelectionSystem
                     CreateObstacle(obstacleData.position.x, obstacleData.position.y,
                         obstacleData.scale.x, obstacleData.scale.y, obstacleData.angle);
                 }
-                navMeshSurface.BuildNavMesh();
+                StartCoroutine(BakeNavMeshAfterFrame());
             }
+        }
+
+        private IEnumerator BakeNavMeshAfterFrame()
+        {
+            yield return null;
+            navMeshSurface.BuildNavMesh();
         }
 
         private void ClearObstacles()

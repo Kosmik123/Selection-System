@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5972408540456190399}
   - component: {fileID: 1332782342216293620}
   - component: {fileID: 464229421492348072}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,6 +51,7 @@ MonoBehaviour:
   moveSpeed: 0
   rotationSpeed: 0
   endurance: 0
+  enduranceTimer: 0
   targetPosition: {x: 0, y: 0, z: 0}
   followedCharacter: {fileID: 0}
 --- !u!114 &1332782342216293620
@@ -100,7 +101,7 @@ GameObject:
   - component: {fileID: 4373916032731191268}
   - component: {fileID: 1299630682327656262}
   - component: {fileID: 7055128737201982170}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
