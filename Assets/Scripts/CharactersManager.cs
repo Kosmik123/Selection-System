@@ -40,7 +40,7 @@ namespace SelectionSystem
 
         private void CreateNewCharacter()
         {
-            var character = spawner.SpawnCharacter();
+            var character = spawner.SpawnRandomCharacter();
             characters.Add(character);
             OnCharacterAdded?.Invoke(character);
         }
