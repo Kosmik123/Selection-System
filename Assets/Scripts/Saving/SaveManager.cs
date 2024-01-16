@@ -40,6 +40,9 @@ namespace SelectionSystem.Saving
         [ContextMenu("Load")]
         public async void LoadGame()
         {
+            if (File.Exists(SavesPath) == false)
+                return;
+
             using var reader = new StreamReader(SavesPath);
             var task = reader.ReadToEndAsync();
             var allSavables = FindObjectsOfType<SavableBehavior>();
