@@ -109,6 +109,9 @@ namespace SelectionSystem
                         characterData.endurance);
                     characters.Add(character);
                 }
+                if (charactersSaveData.selectedCharacterIndex != -1)
+                    SelectCharacter(characters[charactersSaveData.selectedCharacterIndex]);
+
             }
         }
     }

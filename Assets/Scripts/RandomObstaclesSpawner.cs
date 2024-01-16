@@ -67,13 +67,16 @@ namespace SelectionSystem
                     CreateObstacle(obstacleData.position.x, obstacleData.position.y,
                         obstacleData.scale.x, obstacleData.scale.y, obstacleData.angle);
                 }
+                navMeshSurface.BuildNavMesh();
             }
         }
 
         private void ClearObstacles()
         {
-            while (transform.childCount > 0)
-                Destroy(transform.GetChild(0).gameObject);
+            var allChildren = transform.GetComponentsInChildren<Transform>();
+            foreach (var obstacle in allChildren)
+                if (obstacle != transform)
+                    Destroy(obstacle.gameObject);
         }
     }
 

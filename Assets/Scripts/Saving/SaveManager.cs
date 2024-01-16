@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace SelectionSystem.Saving
@@ -24,16 +25,33 @@ namespace SelectionSystem.Saving
             }
 
             var json = JsonUtility.ToJson(gameSaveData);
-            SaveToFile(json);
+            WriteToSaveFile(json);
         }
 
-        private async void SaveToFile(string jsonData)
+        private async void WriteToSaveFile(string jsonData)
         {
             using (var writer = new StreamWriter(SavesPath))
             {
                 await writer.WriteAsync(jsonData);
             }
             OnGameSaved?.Invoke();
+        }
+
+        [ContextMenu("Load")]
+        public async void LoadGame()
+        {
+            using var reader = new StreamReader(SavesPath);
+            var task = reader.ReadToEndAsync();
+            var allSavables = FindObjectsOfType<SavableBehavior>();
+            string json = await task;
+            var gameSaveData = JsonUtility.FromJson<GameSaveData>(json);
+            foreach (var savable in allSavables)
+            {
+                if (savable is CharactersManager charactersManager)
+                    charactersManager.SetSaveData(gameSaveData.charactersSaveData);
+                else if (savable is RandomObstaclesSpawner obstaclesSpawner)
+                    obstaclesSpawner.SetSaveData(gameSaveData.obstaclesSaveData);
+            }
         }
     }
 }
