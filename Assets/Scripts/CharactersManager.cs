@@ -29,7 +29,7 @@ namespace SelectionSystem
             clickProvider.OnClicked += ClickProvider_OnClicked;
         }
 
-        private void Start()
+        public void CreateRandomCharacters()
         {
             for (int i = 0; i < initialCharactersCount; i++)
             {
