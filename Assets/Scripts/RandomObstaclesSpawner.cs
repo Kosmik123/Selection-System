@@ -54,7 +54,7 @@ namespace SelectionSystem
         [System.Serializable]
         public class ObstaclesSaveData : SaveData
         {
-            public List<ObstacleData> obstacles;
+            public List<ObstacleData> obstacles = new List<ObstacleData>();
         }
 
         [System.Serializable]

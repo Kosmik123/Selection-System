@@ -1,16 +1,12 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace SelectionSystem.Saving
 {
     [System.Serializable]
     public class GameSaveData
     {
-        private List<SaveData> saveDatas = new List<SaveData>();
-        public List<SaveData> SaveDatas
-        {
-            get => saveDatas;
-            set => saveDatas = value;   
-        }
+        public List<SaveData> saveDatas = new List<SaveData>();
     }
 
     [System.Serializable]
